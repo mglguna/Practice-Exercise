@@ -1,0 +1,33 @@
+<!Doctype html>
+<html>
+	<head>
+		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	</head>
+	<body>
+		<script>
+			var a=[10,50,80];
+			var color=d3.scale.ordinal()
+						.range(["red","green","yellow"]);
+			var canvas = d3.selectAll("body").append("svg")
+							.attr("height",500)
+							.attr("width",500);
+			var group=canvas.append("g").attr("transform","translate(100,100)");				
+			var arc=d3.svg.arc()
+				.innerRadius(0)
+				.outerRadius(100);
+				
+			var pie=d3.layout.pie()
+					.value(function(d){return d;});
+				
+			var arcs=group.selectAll(".arc")
+					.data(pie(a))
+					.enter()
+					.append("g")
+					.attr("class","arc");
+					
+				arcs.append("path")
+					.attr("d",arc)
+					.attr("fill",function(a){return color(a.data);});
+		</script>
+	</body>
+</html>

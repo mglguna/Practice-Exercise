@@ -1,0 +1,63 @@
+<!Doctype html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script> 
+	<script src="http://d3js.org/d3.v3.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<chart></chart>
+</body>
+<script>
+var app=angular.module("myApp",[]);
+	app.controller("myCtrl",function($scope){
+    $scope.dataset=[30,20,10,15,60];
+});
+	app.directive("chart",function(){
+    return{
+        restrict:'E',
+        link:function(scope,element,attr){
+            var h=500;
+            var canvas=d3.select("body").append("svg")
+            				.attr("height",500)
+            				.attr("width",500)
+            				.append("g")
+            				.attr("transform","translate(20,20)");
+            var xScale=d3.scale.linear()
+            	   			.domain([0,75])
+                            .range([0,200]);
+            var yScale=d3.scale.linear()
+            	   			.domain([0,d3.max(scope.dataset,function(d){return d;})])
+                            .range([200,0]);
+            var xAxis=d3.svg.axis()
+            			.scale(xScale)
+            			.orient("bottom")
+            			.ticks(5);
+            var yAxis=d3.svg.axis()
+            			.scale(yScale)
+            			.orient("left")
+            			.ticks(5);              
+            canvas.selectAll(".bar")            		
+            		.data(scope.dataset)
+            		.enter()   
+            		.append("rect")
+            		.attr("class","bar")
+            		.attr("x",function(d){return xScale(d);})
+            		.attr("y",function(d){return yScale(d);})
+            		.attr("width","10px")
+            		.attr("height",function(d){return 200-yScale(d);})             	
+            		.attr("fill","steelblue");
+            canvas.append("g")
+            		.attr("class","axis")
+            		.call(xAxis)
+            		.attr("transform","translate(0,200)");
+            canvas.append("g")
+            		.attr("class","axis")
+            		.call(yAxis)
+            		.attr("transform","translate(0,0)");
+         
+        }
+    };
+});
+</script>
+</html>
+

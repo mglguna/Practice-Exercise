@@ -1,0 +1,42 @@
+<!Doctype html>
+<html>
+	<head>
+		<script src="http://d3js.org/d3.v3.js"></script>
+	</head>
+	<body>
+		<script>
+			var dataset=[10,30,40,50,70,15,49];
+			var color=d3.scale.category10();
+			var canvas=d3.select("body").append("svg")
+						.attr("height",500)
+						.attr("width",400)
+						.append("g")
+						.attr("transform","translate(200,200)");
+			updateGraph(dataset);			
+			function updateGraph(dataset){
+					
+			var arc=d3.svg.arc()
+					.innerRadius(10)
+					.outerRadius(100);
+			var pie=d3.layout.pie()
+						.sort(null)
+						.value(function(d){return d;})
+			var arcs=canvas.datum(dataset).selectAll("arcs")
+							.data(pie).enter()
+							.append("g")
+							.attr("class","arcs");
+							
+				arcs.append("path")
+					.attr("d",arc)
+					.attr("fill",function(d,i){return color(i);})
+				arcs.append("text")
+					.attr("transform",function(d){return "translate("+arc.centroid(d)+")";})
+					.attr("text-anchor","middle")
+					.attr("dy","0.35em")
+					.text(function(d){return d.data;});
+			}
+			setTimeout(function(){updateGraph([10,30])},5000);	
+		</script>
+	</body>
+	
+</html>

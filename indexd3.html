@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+    </head>
+	<style>
+	div.bar{
+		display:inline-block;
+		width:20px;
+		//height:75px;
+		background:teal;
+		margin-right:2px;	
+	}
+	</style>
+    <body>
+        <script type="text/javascript">	
+			var dataset=[5,10,15,20,25,30,25, 7, 5, 26, 11, 8, 25, 14, 23, 19,14, 11, 22, 29, 11, 13, 12, 17, 18, 10,24, 18, 25, 9, 3 ];
+			var a=[5,10,15,20,15];
+			// d3.select("body").append("p").text("New Paragraph!");
+			/*d3.select("body").selectAll("p").data(dataset).enter().append("p").text(function(d){return d;}).style("color",function(d){
+				if(d>15){
+				return "blue";
+				}else{
+				return "pink"}});*/
+			/*d3.select("body").selectAll("div").data(dataset).enter().append("div").text(function(d){
+			return d;}).attr("class","bar").style("height",function(d){
+				var barh = d*5;
+				return barh + "px";
+			});	*/
+			var h=50,x=150;
+			var svg=d3.select("body").append("svg").attr("height",500).attr("width",1000);
+			svg.selectAll("rect").data(dataset).enter().append("rect").attr("x",function(){x=x+25; return x;}).attr("y",function(d){return h-d;}).attr("width",24).attr("height",function(d){return h+d;}).attr("fill","teal");
+			x=155;h=40;
+			svg.selectAll("text").data(dataset).enter().append("text").text(function(d){return d;}).attr("x",function(){x=x+25;return x;}).attr("y",function(d){return h-d+25;});
+			/*svg.selectAll("circle").data(a).enter().append("circle").attr("cx",function(d){
+			return d+(d+3)}).attr("cy",function(d){
+			return d+(d-3);}).attr("r",function(d){
+			return d});*/
+        </script>
+		<br><svg width="500" height="50">
+		<rect x="0" y="0" width="200" height="20"/>
+		<circle cx="250" cy="25" r="25"/>
+		<ellipse cx="400" cy="25" rx="50" ry="25"/>
+		<line x1="0" y1="0" x2="500" y2="50" stroke="black"/>
+		<text x="450" y="25">Hello World</text>
+		</svg>
+		<p>New Paragraph!</p>
+    </body>
+</html> 

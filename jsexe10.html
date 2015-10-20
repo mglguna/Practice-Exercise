@@ -1,0 +1,188 @@
+<!DOCTYPE html>  
+<html> 
+<body onresize="reSizeme()">  
+<h4> Exercise 1 and 3</h4>
+<p id="text">JavaScript Exercises - w3resource</p>   
+<button id="jsstyle" onclick="jsstyle1()">Style</button> 
+<h4> Exercise 2 </h4>
+<form id="form1" onsubmit="getFormvalue()">  
+First name: <input type="text" name="fname" value="David"><br>  
+Last name: <input type="text" name="lname" value="Beckham"><br>  
+<input type="submit" value="Submit"> 
+</form>
+<h4>Execise 4</h4>
+<p><a id="w3r" type="text/html" hreflang="en-us" rel="nofollow" target="_self" href="http://www.w3resource.com/">w3resource</a></p>  
+<button onclick="getAttributes()">Click here to get  attributes value</button> 
+<h4>Execise 5</h4>
+<table id="row">
+     <tr>
+         <th>firstName</th>
+         <th>LastName</th>
+     </tr>
+     <tr id="row">
+         
+     </tr>  
+         </table>
+<hr>Exercise 6</h4> 
+<table id="myTable" border="1">  
+<tr><td>Row1 cell1</td>  
+<td>Row1 cell2</td></tr>  
+<tr><td>Row2 cell1</td>  
+<td>Row2 cell2</td></tr>  
+<tr><td>Row3 cell1</td>  
+<td>Row3 cell2</td></tr>  
+</table><form>  
+<input type="button" onclick="changeContent()" value="Change content">  
+</form>
+<h4>Exercise 7</h4>
+<table id="newTable" style="border:1px solid black;border-collapse:collapse;" >
+</table>
+<input type="submit" value="submit" onclick="addRow()">
+<h4>Exercise 8 and 9</h4>
+<form>  
+<select id="colorSelect">  
+<option>Red</option>  
+<option>Green</option>  
+<option>White</option>  
+<option>Black</option>  
+</select>  
+<input type="button" onclick="removecolor()" value="Select and Remove"><br></form>
+<h4>Exercise 10</h4>
+Radius<br>
+<input type="number" id="iRadius"><br>Volume<br>
+<input type="number" id="iVolume"><br>
+<input type="submit" value="submit" onclick="sVolume()">
+<h4>Exercise 11</h4>
+<input type="submit" value="Generate Random Image" onclick="genRandImage()"><br>
+<img src=# alt="Random Image" id="RandImage">
+<h4>Exercise 12</h4>
+<p id="para" onmouseover="highlightB()" onmouseout="nhighlightB()"><b>We</b> have just started <b>this</b> section for the users (<b>beginner</b> to intermediate) who <b>want</b> to work with <b>various</b> JavaScript <b>problems</b> and write scripts online to <b>test</b> their JavaScript skill.</p>
+</body> 
+<script>
+function jsstyle1(){
+var x=document.getElementById("text").setAttribute("style","font-family:Verdana;font-size:40px;color:Blue;background-color:yellow;");
+}
+function getFormvalue()  
+{  
+var x=document.getElementById("form1");  
+for (var i=0;i<x.length;i++)  
+{  
+if (x.elements[i].value!='Submit')  
+{    
+console.log(x.elements[i].value);  
+}    
+} 
+}  
+function getAttributes(){
+var x=document.getElementById("w3r");
+console.log(x.type,x.hreflang,x.rel,x.target,x.href);
+}
+a={"employee":[{"firstname":"abc","lastname":"def"},{"firstname":"wer","lastname":"rwe"},{"firstname":"fdsfsd","lastname":"sdfsdf"}]}
+
+
+for(i=0;i<a.employee.length;i++)
+{
+var x=document.getElementById("row");
+var y = document.createElement('tr');
+var tdele=document.createElement('td');
+tdele.innerHTML=a.employee[i].firstname;
+y.appendChild(tdele);
+var tdele1=document.createElement("td");
+tdele1.innerHTML=a.employee[i].lastname;
+y.appendChild(tdele1);
+x.appendChild(y);
+}
+function changeContent(){
+var x=document.getElementById("myTable").rows[0].cells[0];
+x.innerHTML="Guna";
+}
+function addRow(){
+var x=document.getElementById("newTable");
+var r=window.prompt("Enter Number of Rows:");
+var c=window.prompt("Enter Number of Columns:");
+console.log(r,c);
+for(i=0;i<r;i++){
+var trele=document.createElement("tr");
+for(j=0;j<c;j++){
+var tdele=document.createElement("td");
+tdele.innerHTML="Row"+i+"Col"+j;
+tdele.setAttribute("style","border:1px solid black;");
+trele.appendChild(tdele);
+}
+x.appendChild(trele);
+}
+}
+function removecolor(){
+var y=window.prompt("Which color to delete from the list:");
+var x=document.getElementById("colorSelect");
+window.alert(x.length);
+for(i=0;i<x.length;i++){
+if(x.options[i].value.toLowerCase()==y){
+x.remove(i);
+}
+}
+}
+function sVolume(){
+var r=document.getElementById("iRadius").value;
+var v=(4/3)*3.14*r*r*r;
+document.getElementById("iVolume").value=v;
+}
+function genRandImage(){
+var r=Math.floor(Math.random()*3);
+var x=document.getElementById("RandImage");
+console.log(r);
+if(r==0){
+document.getElementById("RandImage").src="http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg";
+document.getElementById("RandImage").height=240;
+document.getElementById("RandImage").weight=160;
+}
+if(r==1){
+document.getElementById("RandImage").src="http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg";
+document.getElementById("RandImage").height=320;
+document.getElementById("RandImage").weight=195;
+}
+if(r==2){
+document.getElementById("RandImage").src="http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg";
+document.getElementById("RandImage").height=500;
+document.getElementById("RandImage").weight=343;
+}
+ 
+}
+function highlightB(){
+x=document.getElementsByTagName("b");
+for(i=0;i<x.length;i++){
+x[i].style.background="yellow";
+}
+}
+function nhighlightB(){
+x=document.getElementsByTagName("b");
+for(i=0;i<x.length;i++){
+x[i].style.background="transparent";
+}
+}
+function reSizeme(){
+console.log(window.innerWidth,window.innerHeight);
+}
+</script> 
+</html>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

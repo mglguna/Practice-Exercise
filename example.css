@@ -1,0 +1,15 @@
+.header{
+width:100%;
+background-color:black;
+color:grey;}
+.search{
+width:700px;
+float:right;
+display:inline-block;
+}
+.search1{
+border-radius:10px;
+padding:9px;
+}
+.home,.flag{
+clear:both;}

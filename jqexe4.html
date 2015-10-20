@@ -1,0 +1,82 @@
+<!Doctype HTML>
+<html>
+<head>
+<script src="jquery-1.11.3.js"></script>
+</script>
+<body>
+<button id="btn1">Animate height & width</button>
+<button id="btn2">Reset</button>
+<div id="box" style="background:#98bf21;height:100px;width:100px;margin:6px;"></div>
+<button id="btn4">Click to fade in boxes with a delay</button></p>  
+<div id="div1" style="width:100px;height:90px;display:none;background-color:#9F81F7;"></div><br>  
+<div id="div2" style="width:100px;height:90px;display:none;background-color:#0B610B;"></div><br>  
+<div id="div3" style="width:100px;height:90px;display:none;background-color:#61210B;"></div><br> 
+<button id="btn3">Animate</button> 
+<div id="div4" style="width:100px;height:90px;background-color:red;"></div><br>
+<div id="div5"style="background:#2E9AFE;width:100%;">My Effect is fadeOut Effect</div>
+ <button id="btn5">Fade In (3 Second)</button>
+ <button id="btn6">Fade Out (3 Second)</button>
+ <p> Click this paragraph to see it fade.</p>
+ <p>fadeToggle() with different speed parameters.</p>  
+<button id="btn7">Click to fade in/out boxes</button><br><br>
+<div id="div6" style="width:100px;height:100px;background-color:#6D5050;"></div>
+<br>
+<div id="div7" style="width:100px;height:100px;background-color:#42D5A9;"></div>
+<br>
+<div id="div8" style="width:100px;height:100px;background-color:#8942D5;"></div>
+<p id="p1">User ID : <input type="text" id='field1'></p>
+<p id="p2">Password : <input type="password" id='field2'></p>
+<p><input type="button" value="Run" id="btn8"></p>
+<div id="div9" style="width:100px;height:100px;background-color:#8942D5;"></div>
+<input type="button" value="Top" id="btn9">
+</body>
+<script>
+$("document").ready(function(){
+	$("#btn1").click(function(){
+		$("#box").animate({height:'+=100px',width:'+=150px'},"100");
+	});
+	/*$("#btn2").click(function(){
+		$("#box").animate({height:'100px',width:'100px'},"slow");
+	});*/
+	$("#btn2").click(function(){
+		$("#box").stop();
+	});
+	$("#btn4").click(function(){
+	
+	$("#div1").delay(1200).fadeIn();
+	$("#div2").delay(2400).fadeIn();
+	$("#div3").delay(3600).fadeIn();
+	});
+	$("#btn3").click(function(){
+		$("#div4").animate({height:'300px'},"slow");
+		$("#div4").animate({width:'300px'},"slow");
+		$("#div4").queue(function(){
+			$("#div4").css("background","blue");
+			$("#div4").dequeue();
+		});
+		$("#div4").animate({height:'100px'},"slow");
+		$("#div4").animate({width:'100px'},"slow");
+	});
+	$("#btn5").click(function(){
+		$("#div5").fadeIn(3000);
+	});
+	$("#btn6").click(function(){
+		$("#div5").fadeOut(3000);
+	});
+	$("p").fadeTo(500,0.4);
+	$("#btn7").click(function(){
+		$("#div6").fadeToggle("slow");
+		$("#div7").fadeToggle("slow");
+		$("#div8").fadeToggle("slow");
+	});
+	$("#p1").hide(10000);
+	$("#p2").hide(10000);
+	$("#btn8").click(function(){
+		$("#div9").toggle(1000);
+	});
+	$("#btn9").click(function(){
+		$("body").animate({scrollTop:0},"slow");
+		});
+	});
+</script>
+</html>

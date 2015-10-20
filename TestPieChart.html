@@ -1,0 +1,55 @@
+<!Doctype html>
+<html>
+<head>
+	<script src="http://d3js.org/d3.v3.js"></script>
+</head>
+<body>
+	<script>
+		var dataset=[10,40,50,30,60];
+		var h=500,w=300,padding=30;
+		var colorScale=d3.scale.category10();
+		var canvas=d3.select("body").append("svg")
+					.attr("height",h+padding)
+					.attr("width",w+padding)
+					.append("g")
+					.attr("transform","translate(200,200)");
+		
+				
+		var arc=d3.svg.arc()
+					.innerRadius(0)
+					.outerRadius(120);
+		var pie=d3.layout.pie()
+				.sort(null)
+				.value(function(d){return d;});
+		var arcs=canvas.datum(dataset).selectAll("path")
+						.data(pie)
+						.enter()
+						.append("path")
+						.attr("fill",function(d,i){return colorScale(i);})
+						.attr("d",arc)
+						.each(function(d){this._current=d;});
+				
+						
+			arcs.append("text")
+				.attr("transform",function(d){return "translate("+arc.centroid(d)+")";})
+				.attr("text-anchor","middle")
+				.attr("dy",".35em")
+				.text(function(d){return d.data;});
+		setTimeout(function(){updateChart()},5000);
+			function updateChart(){
+				var dataset=[40,90,70,20];
+				pie.value(function(d){return d;})
+				arcs=arcs.data(pie);
+				arcs.transition().duration(750).attrTween("d",arcTween);
+			}
+		function arcTween(a) {
+			  var i = d3.interpolate(this._current, a);
+			  this._current = i(0);
+			  return function(t) {
+			  return arc(i(t));
+			};
+		}
+					
+	</script>
+</body>
+</html>

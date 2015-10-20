@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script> 
+	</head>
+	<body ng-app="myApp" ng-controller="myCtrl">
+		<input type="text" ng-model=val>
+		<mydirect msg="alert me {{val}}">click</mydirect>
+		<input type="button" value="setColor" ng-click="mystyle={color:'red',background:'blue'}">
+		<span ng-style="mystyle">Sample Text</span>
+		<select name="fruits">
+			<option>Apple</option>
+			<option>banana</option>
+			<option>Green Apple</option>
+			<option>strawberry</option>
+		</select>	<br>
+		<select ng-model="selecteditem" ng-options="fruit for fruit in fruits"></select>
+		<p>{{selecteditem}}</p>
+	</body>
+	<script>
+		angular.module("myApp",[])
+			.controller("myCtrl",function($scope,$interpolate){
+				$scope.fruits=['apple','orange','grapes','banana'];
+				$scope.selecteditem="";
+				$scope.items = [{name: 'one', age: 30 },{ name: 'two', age: 27 },{ name: 'three', age: 50 }];
+				var string="my name is {{val}}";
+				$scope.val="Guna";
+			//alert($interpolate(string)($scope));
+				
+			})
+			.directive("mydirect",function($interpolate){
+				return{
+					restrict:'E',
+					transclude:true,
+				//	scope:{'msg':'@'},
+					template:'<a ng-transclude></a>',
+					link:function(scope,element,attr){
+						//var scope=this,
+						parsedmsg=$interpolate(attr.msg);
+						element.bind("click",function(){
+							alert(attr.msg);
+						});
+					}
+				};
+			});
+	</script>
+</html>

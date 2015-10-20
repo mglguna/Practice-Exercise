@@ -1,0 +1,68 @@
+<!Doctype HTML>
+<html>
+<head>
+<script src="jquery-1.11.3.js"></script>
+<style>
+  p {
+      margin: 8px;
+	  font-size: 16px;
+	}
+ .myclass 
+    {
+	 color: #FA5858;
+	}  
+.highlight 
+  {
+    background: #CEF6F5;
+  }
+  .divclass 
+  {
+    width: 90px;
+	height: 75px;
+	margin: 5px;
+	background-color:#F3E2A9
+ }
+ p {
+    margin-top:20px;
+    margin-left: 10px;
+    padding: 5px;
+    border: 2px solid #666;
+  }
+ </style>
+</head>
+<body>
+<div style="height:75px;width:200px;padding:10px;margin:3px;border:1px solid blue;background-color:#81DAF5;"></div>
+<div style="height:75px;width:200px;padding:10px;margin:3px;border:1px solid blue;background-color:#F3E2A9;"></div>
+
+<p>jQuery Exercises</p>
+<p>and Solution.</p>
+
+<p>HelloWorld</p>
+<div id="div1" class="divclass"></div>
+<div id="div2" </div>
+<div id="div3" </div>
+</body>
+<script>
+	$("document").ready(function(){
+		$("p").click(function(){
+			$("p").addClass("highlight");
+			$("p").last().addClass("myclass");
+			});
+			console.log($("div").height());
+			console.log($("div").innerHeight());
+			console.log($("div").outerHeight());
+			console.log($("div").outerHeight(true));
+			console.log($("div").width());
+			console.log($("div").innerWidth());
+			console.log($("div").outerWidth());
+			console.log($("div").outerWidth(true));
+			console.log($("p").scrollLeft());
+			console.log($("div").position());
+			console.log($("div").hasClass("divclass"));
+			console.log($("p").offset());
+			$("p").first().click(function(){
+			$("p").last().toggle();
+			});
+	});
+</script>
+</html>

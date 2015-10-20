@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<title>conedexin</title>
+<link rel="stylesheet" href="conedexin.css" type="text/css"></link>
+<link rel="stylesheet" href="http://www.w3schools.com/w3css/" type="text/css"></link>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="load()" style="font-family:Lucida Sans;">
+<div class="container">
+	<header class="w3-container">
+		<img src="http://www.rccd.edu/community/cboc/PublishingImages/letterC.jpg" alt="Company logo" style="height:80px;width:80px" class="w3-quarter">
+		<h1 class="w3-third">Conedexen</h1>
+	</header><br>
+	<nav class="w3-topnav navbar">
+		<div class="menu-items w3-half">
+		<table>
+			<tr>
+			<td onclick="displayHome()"><a href=# style="text-decoration:none;color:black;">Home</a></td>
+			<td>Events</td>
+			<td>Courses</td>
+			<td onclick="contentDisplay('Book1')"><a href=# style="text-decoration:none;color:black;">Books</a></td>
+			</tr>
+		</table>
+		</div>
+		<div class="Search w3-half">
+		<table>
+			<tr>
+			<td class="searchtable"><input type="search" placeholder="Search" id="searchbox"></td>
+			<td class="searchtable"><button type="submit" value="Search" id="searchbutton">Search</button></td>
+			</tr>
+		</table>
+		</div>
+	</nav><br>
+	<div id="content">
+	<div class="content w3-col">
+		<img src="#" alt="Conference Images" id="conferenceImages" width=100% height=350px>
+	</div><br>
+	<article class="w3-col">
+		<div class="Eventsandcourses w3-half">
+			<h3 style="background-color:#dddddd;">Upcoming Events and Courses</h3>
+			<div class="contentEvent">
+				<div class="talend">
+					<div class="headertalend"><h1 style="margin:0px;">talen<span style="color:#66FF33">d<sup>&#8727</sup></span></h1>
+					</div>
+					<div class="linktalend"><a href=#>Introduction to talend</a><br>
+						Presented by: Anteneh Benti
+					</div>				
+				</div><br>			
+				<div class="otherEvents">Other Upcoming Events:<ul style="padding:20px;">
+					<li><a href=#>Introduction to Tableau</a></li>
+					<li><a href=#>Big Data Conference</a></li>
+					<li><a href=#>Hadoop Summit</a></li>
+					<li><a href=#>Tableau Conference</a></li>
+					<li><a href=#>Advanced SOA Training</a></li>
+					<li><a href=#>Oracle E-Business Suite Training</a></li>
+				</ul>
+				</div>
+			</div>
+			<a href=#>All online Events and Courses &#8250</a>
+		</div>
+		<div class="newestbooks w3-half">
+			<h3 style="background-color:#dddddd">Newest Book</h3>
+			<ol id="newestbooksimages">
+				
+			</ol>
+		</div>
+	</article>
+	</div>
+	<div class="contentbook w3-col" id="contentbook">
+		<div class="content1">
+			<div class="bookimg w3-half">
+				<img src=# alt="Book Image" height=300px  style="padding:0 70px" id="bookimg" class="w3-half">
+			</div>
+			<div class="togglebook w3-half">
+			<table>
+				<tr class="toggleclass">
+					<td id="detheader" onclick="imageonclick()"><h3><a href=# class="atoggle w3-quarter">Book Details</a></h3></td>
+					<td id="desheader" onclick="desconclick()"><h3><a href=# class="atoggle w3-quarter">Book Description</a></h3></td>
+				</tr>
+			</table>
+			<div id="bookDetail">	
+				<h4 id="h4Title" style="padding-left:38px;"></h4>
+				<h5 id="h5Subtitle" style="padding-left:38px;"></h5>
+				<ol>
+				<li id="bookDetailsAuthor"></li><br><br>
+				<li id="bookDetailsPublisher"></li><br><br>
+				<li id="bookDetailsPrice"></li><br>
+				</ol>	
+			</div>
+			<div id="bookDescription">
+				<h5>Book Description</h5>
+				<p id="bookdesc"></p>
+			</div>			
+			</div>	<br>
+			<div class="otherbook w3-col">					
+				<ol>		
+				<h4 style="margin:0px; padding:5px 10px 0 5px;float:left;">Other Books</h4>
+				<li id="otherbooks"></li>	
+				</ol>
+			</div>
+		</div>		
+	</div>
+	<footer style="height:10px">
+	</footer>
+</div>
+<script type="text/javascript" src="conedexin.js"></script>
+<script type="text/javascript" src="a.json"></script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!Doctype html>
+<html>
+<head>
+<script src="jquery-1.11.3.js"></script>
+<script src="angular.min.js"></script>
+</head>
+<style>
+	li{
+		list-style-type:none;
+		display:inline-block;
+		padding:20px;
+	}
+	ul{
+		background:blue;
+	}
+	p{
+		padding:50px;
+	}
+</style>
+<body ng-app="myApp" ng-controller="myCtrl" ">
+<ul>
+	<li ng-repeat="m in menu" ng-click="colorChange(m)"  ng-mousedown="changeBackground()" ng-style="mystyle">{{m|uppercase}}</li>
+</ul>
+<p>Please click on menu</p>
+<p>You selected {{name}}</p>
+<div ng-click="showTooltipbody()">
+<input type="text" value="{{value}}" ng-hide="showTool" ng-model="value">
+
+<p ng-click="showTooltip($event)">{{value}}</p>
+</div>
+</body>
+<script>
+	var app=angular.module("myApp",[]);
+	app.controller("myCtrl",['$scope',function($scope){
+		$scope.menu=['Home','Projects','Services','Contact'];
+		$scope.colorChange=function(m){
+			$scope.name=m;
+			$scope.mystyle={background:"blue"};
+		};
+		$scope.showTool=true;
+	$scope.changeBackground=function(){
+	$scope.mystyle={background:"red"};
+	};
+	$scope.value="Edit me";
+	$scope.showTooltip=function(e){
+		e.stopPropagation();
+		$scope.showTool=!$scope.showTool;
+	};
+	$scope.showTooltipbody=function(){
+		$scope.showTool=true;
+	};
+	}]);
+</script>
+</html>

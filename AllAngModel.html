@@ -1,0 +1,31 @@
+<!Doctype html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>	
+	</head>
+	<body ng-app="myApp" ng-controller="myCtrl">
+	<a href="#/">View1</a>|
+	<a href="#/view2">View2</a>
+	{{name}}
+	<div ng-view></div>
+	</body>
+	<script>
+		angular.module("myApp",['ngRoute'])
+			.controller("myCtrl",function($scope){
+				$scope.edit="Hello";
+			})
+			.config(function($routeProvider){
+				$routeProvider
+				.when("/",{
+					controller:"myCtrl",	
+					templateUrl:"view1.html"
+				})
+				.when("/view2",{
+					controller:"myCtrl",
+					templateUrl:"view2.html"					
+				})
+				.otherwise({redirectTo:"/"})
+			});
+	</script>
+</html>

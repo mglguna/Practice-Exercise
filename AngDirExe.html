@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="MainController">
+    <h1>Hello Plunker!</h1>
+    <my-direct first="Guna" last="Chari"><h1>sadsdsadasdsdsad</h1></my-direct>
+	 <my-direct first="adasdasd" last="sdasdsa"></my-direct>
+	  <my-direct first="cvxcvxcv" last="wewerewr"></my-direct> 
+	  <my-direct first="nbmbnm" last="werdsf"></my-direct>
+	  <div drink flavor="addflavour"></div>
+  </body>
+  <script>
+	var app = angular.module("myApp", []);
+	app.controller("MainController", function($scope) {
+	  $scope.name = "HelloWorld";
+	  $scope.addflavour="blackberry";
+	});
+	app.directive('myDirect', function() {
+	  return {
+		restrict: "E",
+		transclude:true,
+		scope:{},
+		link:function(scope,element,attr){
+		  scope.first=attr.first;
+		  scope.last=attr.last;
+		},
+		template:"<h1>{{last}},{{first}}<ng-transclude></ng-transclude></h1>"		
+	  }
+	});
+	app.directive('drink', function() {
+	  return {
+		restrict: "A",
+		scope:{f:"=flavor"},
+		template:"<h1>{{f}}</h1>",
+		compile:function(tElem,tAttrs){
+		console.log("compiling the original DOM");
+		debugger;
+		return{
+			pre:function preLink(scope,iElement,iAttrs){
+				console.log("pre");
+			},
+				post:function postLink(scope,iElement,iAttrs){
+				console.log("post");
+			}
+		}
+		}
+		
+	  }
+	});
+	  </script>
+
+</html>

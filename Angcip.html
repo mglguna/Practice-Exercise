@@ -1,0 +1,52 @@
+<!Doctype html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+{{inter}}
+{{$compile}}
+{{color}}
+<mydirect>Guna</mydirect>
+</body>
+<script>
+angular.module("myApp",[])
+	.controller("myCtrl",function($scope,$interpolate,$compile,myProvider){	
+		var string='My name is {{name}}';
+		$scope.name="Guna";
+		$scope.inter=$interpolate(string)($scope);	
+		var html="<h1>Welcome1</h1>";
+		$scope.compile=$compile(html)($scope);
+		console.log(angular.version);
+		$scope.color=myProvider.color;
+	})
+	.provider("myProvider",function(){
+		var hex="red";
+		return{
+			setColor:function(value){
+				hex=value;
+				console.log(hex);
+			},
+			$get:function(){
+				return{
+					color:hex
+				}	
+			}
+		};				
+	})
+	.config(function (myProviderProvider){
+		myProviderProvider.setColor("Blue");
+	})
+	.directive("mydirect",function(){
+		return{
+			restrict:'E',
+			//controller:'myCtrl',
+			template:'<ng-transclude></ng-transclude><h1>{{inter}}</h1>',
+			transclude:true,
+			compile:function(element,attribute){
+				element.css("color","purple")
+				}
+			}
+	});
+</script>
+</html>

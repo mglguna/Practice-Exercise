@@ -1,0 +1,296 @@
+<!Doctype HTML>
+<html>
+<body>
+<h4>Exercise 1-Reverse Number</h4>
+<input type="number" id="revnum"><input type="submit" value="submit" onclick="reverse()">
+<p id="reverse"></p>
+<h4>Exercise 2-palindrome</h4>
+<input type="text" id="palind"><input type="submit" value="submit" onclick="palindrome()">
+<p id="palindrome"></p>
+<h4>Exercise 3-Combination of string</h4>
+<input type="text" id="cString"><input type="submit" value="submit" onclick="combinate()">
+<p id="combinates"></p>
+<h4>Exercise 5- First Letter Caps</h4>
+<input type="text" id="ccaps"><input type="submit" value="submit" onclick="caps()">
+<p id="upper"></p>
+<h4>Exercise 6- Longest Word</h4>
+<input type="text" id="lword"><input type="submit" value="submit" onclick="Longest()">
+<p id="Longw"></p>
+<h4>Exercise 7- Count Vowels</h4>
+<input type="text" id="vword"><input type="submit" value="submit" onclick="cvowels()">
+<p id="nvowels"></p>
+<h4>Exercise 8- Prime Number</h4>
+<input type="text" id="iPrime"><input type="submit" value="submit" onclick="sPrime()">
+<p id="pPrime"></p>
+<h4>Exercise 9- Type of Value</h4>
+<input type="text" id="iType"><input type="submit" value="submit" onclick="sType()">
+<p id="pType"></p>
+<h4>Exercise 10- Identity Matrix</h4>
+<input type="number" id="iMatrix"><input type="submit" value="submit" onclick="sMatrix()">
+<p id="pMatrix"></p>
+<h4>Exercise 11- Second smallest and Second Largest</h4>
+<input type="number" id="iSmallLarge"><input type="submit" value="submit" onclick="sSmallLarge()">
+<p id="pSmallLarge"></p>
+<h4>Exercise 12- Perfect Number</h4>
+<input type="number" id="iPerfect"><input type="submit" value="submit" onclick="sPerfect()">
+<p id="pPerfect"></p>
+<h4>Exercise 12- Factor of a positive Integer</h4>
+<input type="number" id="iFactor"><input type="submit" value="submit" onclick="sFactor()">
+<p id="pFactor"></p>
+<h4>Exercise 12- AmountToCoins</h4>
+<input type="number" id="iAmount"><input type="submit" value="submit" onclick="sAmount()">
+<p id="pAmount"></p>
+</body>
+<script>
+function reverse()
+{
+var x=0,f=0;
+x=document.getElementById("revnum").value;
+while(x>0)
+{
+	f=(f*10)+(x%10);
+	x=Math.floor(x/10);
+}
+document.getElementById("reverse").innerHTML="Reverse: "+f;
+}
+function palindrome(){
+var x=document.getElementById("palind").value;
+var n=x.length,p=0;
+for(i=0;i<n;i++)
+{
+	if(x[i]==x[n-1])
+	{
+		n--;
+		p=1;
+	}
+	else{
+		p=0;
+		break;
+	}
+	
+}
+if(p==1)
+	{
+		document.getElementById("palindrome").innerHTML=x+" is a palindrome";
+	}
+else{
+		document.getElementById("palindrome").innerHTML=x+" is not a palindrome";
+}
+}
+function combinate(){
+var str="",x;
+x=document.getElementById("cString").value;
+n=x.length;
+for(i=1;i<x.length;i++)
+{
+	for(j=0;j<n;j++)
+	{
+		str = str+x.substr(j,i)+",";
+	}
+	n--;
+}
+str=str+x;
+document.getElementById("combinates").innerHTML="string Combination for entered value:  "+str;
+}
+/*var str="resource",a={},b;
+for (i=0;i<str.length;i++){
+	a[i]=str.charCodeAt(i);
+	
+
+}
+console.log(a);
+for(i in a){
+	if(a.i>a.i+1){
+		b=a.i;
+		a.i=a.i+1;
+		a.i+1=b;
+	console.log(a.i);
+}
+}
+a=a.toString();
+for (i=0;i<str.length;i++){
+	str+=a.fromCharCode(i);
+	console.log(str);
+
+}*/
+function caps(){
+var x=document.getElementById("ccaps").value;
+var x1="";
+x1=x[0].toUpperCase();
+console.log(x1[0]);
+for(i=1;i<x.length;i++){
+	if(x[i]==" "){
+		x1 +=" ";
+		x1 += x[i+1].toUpperCase();
+		i++;
+}	
+	else{
+		x1 += x[i];
+}	
+}
+document.getElementById("upper").innerHTML=x1;
+}
+function Longest(){
+var x=document.getElementById("lword").value;
+var b=0,a=0;
+var s=x.split(" ");
+for(i=0;i<s.length;i++){
+	if(b<s[i].length){
+		b=s[i].length;
+		a=i;
+	}
+}
+document.getElementById("Longw").innerHTML="Longest Word in phrase: "+s[a];
+}
+function cvowels(){
+var x=document.getElementById("vword").value,i=0;
+a=x.toLowerCase();
+for (j=0;j<x.length;j++){
+if((a[j]=='a')||(a[j]=='e')||(a[j]=='i')||(a[j]=='o')||(a[j]=='u')){
+	i++;
+}
+
+}
+document.getElementById("nvowels").innerHTML="No of Vowels in this word: "+i;
+}
+function sPrime(){
+var x=document.getElementById("iPrime").value,i=2,flag=0;
+console.log(x);
+while(i<x){
+if(x%i==0){
+flag=1;
+break;
+}
+i++;
+}
+console.log(flag);
+if(flag==1){
+document.getElementById("pPrime").innerHTML=x +" is not a prime number";
+}
+else{
+document.getElementById("pPrime").innerHTML=x +" is a prime number";
+}
+}
+function sType(){
+var x=document.getElementById("iType").value;
+a=x.toLowerCase();
+var patt=/[0-9]/;
+var patt1=/[a-z]/;
+if(x=="true"||x=="false"){
+document.getElementById("pType").innerHTML="Boolean";
+}
+else if(x.match(patt)){
+document.getElementById("pType").innerHTML="Number";
+}
+else if(x.search("()")!=-1){
+document.getElementById("pType").innerHTML="Function";
+}
+else if(x.match(patt1)){
+document.getElementById("pType").innerHTML="String";
+}
+else{
+document.getElementById("pType").innerHTML="Object";
+}
+}
+function sMatrix(){
+var x=document.getElementById("iMatrix").value,a=[100],k=0,str="";
+for(i=0;i<x;i++){
+for(j=0;j<x;j++){
+	if(i==j){
+		a[k]=1;
+	}else{	
+		a[k]=0;
+	}
+str=str+a[k]+"  ";
+k++;
+}
+str+="<br />";
+}
+document.getElementById("pMatrix").innerHTML= str;
+
+}
+function sSmallLarge(){
+var x=document.getElementById("iSmallLarge").value,a=[50],c=[50],b;
+for(i=0;i<x.length;i++){
+	a[i]=x[i];
+
+}
+console.log(a.sort());
+for(i=0;i<x.length;i++){
+b=a[i];
+	for(j=i;j<x.length;j++){
+	if(b==a[j+1]){
+		a[j+1]="";
+		
+	}
+}
+}
+b=0;
+for(i=0;i<a.length;i++){
+	if(a[i]!=""){
+		c[b]=a[i];
+		b++;
+}
+}
+document.getElementById("pSmallLarge").innerHTML="Second smalles is :"+c[1] +" and Second Largest is  :"+c[c.length-2];
+}
+function sPerfect(){
+var x=document.getElementById("iPerfect").value,a=0;
+for(i=1;i<x;i++){
+if(x%i==0){
+	a+=i;
+}
+}
+if(a==x){
+document.getElementById("pPerfect").innerHTML=x +" is a perfect Number";
+}
+else{
+document.getElementById("pPerfect").innerHTML=x +" is not a perfect Number"
+}
+}
+function sFactor(){
+var x=document.getElementById("iFactor").value,a="";
+for(i=1;i<x;i++){
+if(x%i==0){
+	a+=i.toString()+", ";
+}
+}
+a+=i.toString();
+document.getElementById("pFactor").innerHTML=a;
+}
+function sAmount(){
+var x=document.getElementById("iAmount").value,a=[25,10,5,2,1],c="",i=0;
+while(i<a.length){
+if(x-a[i]>0){
+c=c+a[i]+",";
+x-=a[i];
+}
+else if((x-a[i]<0)){
+i++;
+}
+else{
+break;
+}
+console.log(c);
+}
+
+}
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

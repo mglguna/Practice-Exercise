@@ -1,0 +1,68 @@
+<!Doctype HTML>
+<html>
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+<div class="container" ng-app="myApp" ng-controller="myCtrl">
+	<div class="userDetails">
+		<h1>Users</h1>
+		<div>
+			<table class="table table-striped col-md-12">
+				<tr>
+					<th>Edit</th>
+					<th>FirstName</th>
+					<th>LastName</th>
+				<tr>
+				<tr ng-repeat = "u in users">
+					<td><button class="btn btn-default" ng-click="editFields(u.id)"><span class="glyphicon glyphicon-pencil"></span>Edit</button</td>
+					<td>{{u.FirstName}}</td>
+					<td>{{u.LastName}}</td>
+				</tr>
+			</table>
+			<button class="btn btn-success" ng-click="editFields('new')"><span class="glyphicon glyphicon-user"></span>Create New User</button>	
+		</div>
+		<hr>
+		<div>
+		<h2>Create New Users:</h2>
+		<form class="form-horizontal">
+			<p>First Name:<input type="text" ng-model="fname" ng-disabled="!edit" placeholder="First Name">
+			<p>Last Name:<input type="text" ng-model="lname" ng-disabled="!edit" placeholder="Last Name">
+			<p>Password:<input type="text" ng-model="pass1" ng-disabled="!edit" placeholder="Password">
+			<p>Repeat:<input type="text" ng-model="pass2" ng-disabled="!edit" placeholder="Repeat Password">
+		</form>
+		<hr>
+		<button class="btn btn-success" ng-click="saveChanges()"><span class="glyphicon glyphicon-save"></span>Save Changes</button>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+	var app=angular.module("myApp",[]);
+	app.controller("myCtrl",function($scope,$log){
+	$scope.fname="";
+	$scope.lname="";
+	$scope.pass1="";
+	$scope.pass2="";	
+	$scope.users=[{"id":"1","FirstName":"Hege","LastName":"Pege"},{"id":"2","FirstName":"Kim","LastName":"Pim"},{"id":"3","FirstName":"Sal","LastName":"Smith"},{"id":"4","FirstName":"Jack","LastName":"Jones"},{"id":"5","FirstName":"John","LastName":"Deo"},{"id":"6","FirstName":"Peter","LastName":"Pan"}];
+	$scope.edit=false;
+	$scope.editFields=function(id){
+	if(id=='new'){
+		$scope.edit=true;	
+	}else{
+		$scope.edit=true;
+		$scope.fname=$scope.users[id-1].FirstName;
+		$scope.lname=$scope.users[id-1].LastName;
+		$scope.pass1="";
+		$scope.pass2="";
+	}};
+	$log.log("ssdfsdfsf");
+	$scope.saveChanges=function(){$scope.users.push({"id":$scope.users.length+1,"FirstName":$scope.fname,"LastName":$scope.lname});
+		};
+		/*$http.get("users.json").sucess(function(response){
+			$scope.user=response.Users;
+			});*/
+	});
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!Doctype html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script> 
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>	-->
+	</head>
+<body ng-app="app" >
+<h1 style="background:{{myColor}}">Hello World</h1>
+</body>
+<script>
+/*angular.module("myApp",[])
+.config(function($provide){
+	$provide.provider("colorP",function(){
+		return{
+			$get:function(){
+				return{
+					color:"red"
+				}
+			}	
+		}
+	})
+})	
+	/*.config(function(colorProvider){
+		colorProvider.setColor("red");
+	})
+	.controller('myCtrl',['$scope','colorP',function($scope,colorP){
+		$scope.myColor=colorP.color;
+	}]);*/
+	function getData($timeout, $q) {
+  return function() {
+    var defer = $q.defer()
+	console.log(defer); 	
+
+    // simulated async function
+    $timeout(function() {
+    }, 2000)
+
+    return defer.promise
+  }
+}
+
+angular.module('app', [])
+.factory('getData', getData)
+.run(function(getData) {
+  var promise = getData()
+  console.log(promise);
+})
+</script>
+</html>

@@ -1,0 +1,142 @@
+<!Doctype html>
+<html>
+<body>
+<h4>Exercise 1</h4>
+<p id="dday"></p>
+<p id="dtime"></p>
+<h4>Exercise 2</h4>
+<p id="ccontent"></p>
+<h4>Exercise 3</h4>
+<p id="ddate"></p>
+<h4>Exercise 4</h4>
+<p id="areat"></p>
+<h4>Exercise 5</h4>
+<h4 id="w3rotate">w3resource</h4>
+<h4>Exercise 6</h4>
+<input type="number" id="gyear"><input type="submit" value="submit" onclick="yearcheck()">
+<p id="yearleap"></p>
+<h4>Exercise 7</h4>
+<p id="sunyear"></p>
+<h4>Exercise 8</h4>
+<input type="number" id="ranno" min=1 max=10><input type="submit" value="submit" onclick="randcheck()">
+<p id="ranmsg"></p>
+<h4>Exercise 9</h4>
+<p id="daysleft"></p>
+<h4>Exercise 10</h4>
+1st Number:<input type="text" id="firstno"><br><br>2nd Number:<input type="text" id="secondno"><br><br><input type="submit" value="multiply" onclick="multiply()"><input type="submit" value="Divide" onclick="divide()">
+<p id="result"></p>
+<h4>Exercise 11</h4>
+<h4>60<sup>o</sup>C is <span id="ctof"></span><sup>o</sup>F</h4>
+<h4>140<sup>o</sup>F is <span id="ftoc"></span><sup>o</sup>C</h4>
+<h4>Exercise 12</h4>
+<p id="pageURL"></p>
+</body>
+<script>
+var d=new Date();
+switch (d.getDay()){
+case 0:
+	day1="Sunday";
+	break;
+case 1:
+	day1="Monday";
+	break;
+case 2:
+	day1="Tuesday";
+	break;
+case 3:
+	day1="Wednesday";
+	break;
+case 4:
+	day1="Thursday";
+	break;
+case 5:
+	day1="Friday";
+	break;
+case 6:
+	day1="Saturday";
+	break;
+}
+
+document.getElementById("dday").innerHTML="Sample Output: Today is:" + day1;
+if(d.getHours()>11){
+	hours1=d.getHours();
+	if(d.getHours()>12){
+		hours1 -= 12;
+	}
+hours1 =hours1 + " PM";
+}
+else{
+hours1=d.getHours();
+hours1 = hours1 + " AM";
+}
+document.getElementById("dtime").innerHTML="Current Time is: " +hours1+" :"+d.getMinutes()+" :"+d.getSeconds();
+document.getElementById("ccontent").innerHTML=document.body.innerHTML;
+document.getElementById("ddate").innerHTML=d.getMonth()+" - "+d.getDate()+" - "+d.getFullYear()+" , "+d.getMonth()+" / "+d.getDate()+" / "+d.getFullYear();
+var a=5,b=6,c=7;
+var p=(a+b+c)/2;
+var area=Math.sqrt(p+(p-a)+(p-b)+(p-c));
+document.getElementById("areat").innerHTML="Area of a triangle: "+area;
+window.setInterval("w3rotate()",1000);
+function w3rotate(){
+	document.getElementById("w3rotate").setAttribute("style","transform:rotate(-30deg)");
+	var w=document.getElementById("w3rotate").innerHTML;
+	k=w.substring(0,(w.length-1));
+	k1=w[w.length-1];
+	var m=k1.concat(k);
+	document.getElementById("w3rotate").innerHTML=m;
+
+}
+function yearcheck(){
+	var year=document.getElementById("gyear").value;
+	if((year%4)==0){
+		document.getElementById("yearleap").innerHTML=year+" is leap year";
+}
+	else{
+		document.getElementById("yearleap").innerHTML=year+" is not a leap year";
+}
+}
+var dates="";
+for(i=2014;i<=2050;i++){
+var s="01/01/"+i;
+var m = new Date(s);
+if(m.getDay()==0){
+	dates = dates + i.toString()+" ";
+	
+}
+document.getElementById("sunyear").innerHTML="Years with Jan 1st as Sunday:  "+ dates;
+
+}
+function randcheck(){
+var ran=Math.ceil(Math.random()*11);
+console.log(ran);
+var inputran=document.getElementById("ranno").value;
+if(inputran==ran)
+{
+	document.getElementById("ranmsg").innerHTML="Good Work";
+}
+else{
+	document.getElementById("ranmsg").innerHTML="Not matched";
+}
+}
+var dates1=(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
+var d = Date.parse("12/25/2015");
+console.log(dates1);
+var d1=Date.parse(dates1);
+
+document.getElementById("daysleft").innerHTML="Days left until next christmas: "+Math.floor((d-d1)/86400000);
+function multiply(){
+var firstnu=document.getElementById("firstno").value;
+var secondnu=document.getElementById("secondno").value;
+document.getElementById("result").innerHTML="The Result is:\n" +firstnu*secondnu;
+}
+function divide(){
+var firstnu=document.getElementById("firstno").value;
+var secondnu=document.getElementById("secondno").value;
+document.getElementById("result").innerHTML="The Result is:\n" +firstnu/secondnu;
+}
+
+document.getElementById("ctof").innerHTML= 60*(9/5)+32;
+document.getElementById("ftoc").innerHTML= (45-32)/9*5;
+document.getElementById("pageURL").innerHTML=document.documentURI;
+</script>
+</html>

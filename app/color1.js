@@ -1,0 +1,20 @@
+angular.module("myapp",[])
+.controller("myCtrl",function($scope,myProvider){
+	$scope.color=myProvider.color;
+})
+.provider("myProvider",function(){
+	var hex;
+	return{
+		setColor:function(value){
+			hex=value;
+		},
+		$get:function(){
+			return{
+				color:hex
+			}
+		}
+	}
+})
+.config("myProviderProvider",function(){
+	myProvider.setColor="red";
+});

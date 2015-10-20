@@ -1,0 +1,18 @@
+<!Doctype html>
+<html>
+<head>
+<script src="angular.min.js"></script>
+</head>
+<body ng-app="" ng-init="user=[{'name':'Guna','city':'kumbakonam','salary':'300'},{'name':'Gunavathi','city':'kumbakonam','salary':'10'},{'name':'Guna','city':'madurai','salary':'20000'},{'name':'Guna','city':'fremont','salary':'1000'}]">
+Name:<input type="text" ng-model="name1">
+<ol>
+<li ng-repeat="u in user | filter:name1 | orderBy:'city'">{{u.name|uppercase}}-{{u.city}}-{{u.salary|currency}}</li>
+</ol>
+</body>
+/*<script>
+var app=angular.module("myApp",[]);
+app.controller("myCtrl",function($scope){
+$scope.name1="";
+});
+</script>*/
+</html>

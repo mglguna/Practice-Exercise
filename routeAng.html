@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<script src="angular.min.js"></script>
+</head>
+<body ng-app="demoApp">
+<a href="#/">view1</a>
+<a href="#/view2">view2</a>
+<div ng-view=""></div>
+</body>
+<script>
+var demoApp=angular.module("demoApp",['ngRoute']);
+demoApp.controller("simpleController",['$scope',function($scope){
+$scope.name="Edit";
+}]);
+demoApp.config(function($routeProvider){
+$routeProvider
+.when('/',
+	{
+	controller:'simpleController',
+	templateUrl:'view1.html'	
+	})
+.when('/view2',
+	{
+		controller:'simpleController',
+		templateUrl:'view2.html'
+	})
+	.otherwise({reDirectTo:'/'})
+});
+</script>
+</html>

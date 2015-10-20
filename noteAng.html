@@ -1,0 +1,29 @@
+<!Doctype HTML>
+<html>
+<head>
+<script src="jquery-1.11.3.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<textarea id="textArea1" rows="10" cols="50" ng-model="msg"></textarea><br>
+<button ng-click="save()">Save</button>
+<button ng-click="clear()">Clear</button>
+<p>Number of Remaining character:<span ng-bind="left()"></span>
+</body>
+<script>
+var jq=$.noConflict();
+var app=angular.module("myApp",[]);
+app.controller("myCtrl",function($scope){
+$scope.msg="";
+$scope.clear=function(){$scope.msg="";};
+$scope.left=function(){
+if($scope.msg.length>9){
+console.log("print");
+jq("#textArea1").on("keydown",function(e){e.preventDefault();});
+}
+return 10-$scope.msg.length;
+};
+$scope.save=function(){alert("Message Saved");};
+})
+</script>
+</html>

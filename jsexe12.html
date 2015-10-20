@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h4>Exercise 1 and 2</h4>
+<p id="objProperties"></p>
+<p id="objPropertiesDel"></p>
+<p id="objPropertiesLen"></p>
+<h4>Exercise 4</h4>
+<p id="libraryDetails"></p>
+<h4>Exercise 5</h4>
+<p id="Volumeofcylinder"></p>
+<p id="parseur"></p>
+</body>
+<script>
+var student = {name : "David Rayy", sclass : "VI", rollno : 12};
+var text="";
+for(i in student){
+text=text+i+" : "+student[i]+"  ";
+}
+document.getElementById("objProperties").innerHTML=text;
+var a=window.prompt("Enter a property to delete");
+a=a.toLowerCase();
+delete student[a];
+text="";
+for(i in student){
+text=text+i+" : "+student[i]+"  ";
+}
+document.getElementById("objPropertiesDel").innerHTML=text;
+a=0;
+for(i in student){
+a++;
+}
+document.getElementById("objPropertiesLen").innerHTML=a
+var library = [ 
+   {
+       author: 'Bill Gates',
+       title: 'The Road Ahead',
+       readingStatus: true
+   },
+   {
+       author: 'Steve Jobs',
+       title: 'Walter Isaacson',
+       readingStatus: true
+   },
+   {
+       author: 'Suzanne Collins',
+       title:  'Mockingjay: The Final Book of The Hunger Games', 
+       readingStatus: false
+   }];
+text="";
+for(i in library){
+for(j in library[i]){
+text=text+j+" : "+library[i][j]+"&nbsp";
+}
+text+="<br/>";
+}
+document.getElementById("libraryDetails").innerHTML=text;
+var vol={pi:3.14,r:3,h:4};
+var v=vol.pi*vol.r*vol.r*vol.h;
+document.getElementById("Volumeofcylinder").innerHTML=v;
+/*function timerender(){
+var d= new Date();
+var hr= d.getHours();
+var min=d.getMinutes();
+var sec=d.getSeconds();
+}
+display=function(){
+Interval(console.log(hr+":"+min+":"+sec),1000);
+}
+update=function(){
+
+}
+if(hr>24){
+hr=0;
+}
+else if(min>60)
+{
+hr++;
+min=0;
+}
+else if(sec>60)
+{
+min++;
+sec=0
+}
+var timer=new timerender();
+timer.display();*/
+//console.log(all_properties(Array));
+//console.log("i'm a lasagna hog".split("").reverse());
+/*var foo = "Hello";
+(function() {
+  var bar = " World";
+  alert(foo + bar);
+})();
+alert(foo + bar);
+var foo = [];
+foo.push(1);
+foo.push(2);
+console.log(foo.length);*/
+console.log('one');
+setTimeout(function() {
+  console.log('two');
+}, 0);
+console.log('three');
+function all_properties(obj){
+console.log(Object.getOwnPropertyNames(obj));
+}
+all_properties(Math);
+all_properties(Array);
+/*function parseurl(url){
+var y=document.getElementById("parseur");
+var x=document.createElement("img");
+x.src=url;
+y.appendChild(x);
+}
+parseurl(URL("C:\Users\I\Desktop\ultimo\vision\download.jpg"));*/
+</script>
+</html>
+
+
+
+

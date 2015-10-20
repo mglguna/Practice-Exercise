@@ -1,0 +1,61 @@
+<html>
+    <body>
+        <input type="text" name="Name" class="textbox">
+         <input type="button" value="submit">
+          <table>
+              <tr class="tables">
+                  <th> Name</th>
+                  <th> Age</th>
+                  <th> Mark</th>
+              </tr>
+              <tr class="tables">
+                  <td> Sri </td>
+                  <td> 3</td>
+                  <td>34</td>
+              </tr>
+             </table>
+     
+            <ol>
+                <li>Red</li>
+                <li>Blue</li>
+                <li>Green</li>
+                <li>Orange</li>
+                <li>Blue</li>
+            </ol>
+             </body>
+       <div class="head">
+      <div class="sample">
+          <p>this is a paragraph</p>
+            </div>
+             <div class="sample">
+          <p>this is a paragraph</p>
+            </div>
+              <div class="sample">
+          <p>this is a paragraph</p>
+            </div>
+            </div>
+            <br>
+      <table style="width:100%">
+          <tr>
+              <td rowspan="2">Col1</td>
+              <td>row1</td>       
+              
+           </tr>
+            <tr>                
+                <td>row2</td>
+              </tr>
+          <tr>
+              <td colspan="2" style="text-align:center">col2</td>
+          </tr>
+          <tr>
+              <td> Col3</td>
+              <td>col4</td>
+          </tr> 
+           <tr>
+              <td> Col5</td>
+              <td>col6</td>
+          </tr>
+       </table>
+              
+                    
+            </html>

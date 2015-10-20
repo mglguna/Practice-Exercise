@@ -1,0 +1,130 @@
+<!Doctype HTML>
+<html>
+<head>
+<script src="jquery-1.11.3.js"></script>
+<style>
+p {
+    background: blue;
+    color: white;
+     }
+p.dbl {
+    background: yellow;
+    color: black;
+  }
+  .focused {
+   background: green;
+    }
+</style>
+</head>
+<body>
+<p>Click me!</p>
+<form>
+   <input id="field1" type="text" value="Field 1">
+   <input id="field2" type="text" value="Field 2">
+ </form>
+ <form  name='demo_form'>
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br>
+  <input type="submit" value="Submit">
+ </form>
+ <h1>Heading-1</h1>
+ <h2>Heading-2</h2>
+ <h3>Heading-3</h3>
+ <p>Double-click here to change the background color.</p>
+ <h1>Click me to add another!</h1>
+ <p>User ID : <input type="text" id='field11'></p>
+<p>Password : <input type="password" id='field12'>
+<div style="background-color:yellow">
+ <p>Click the button to change the background color of this paragraph.</p>
+ <!--<button>Click me!</button>-->
+ <button>Display event.result</button>
+ <p></p>
+ </div>
+ <h1>This is header1</h1>
+  <h1>This is another header1</h1>
+  <h2>This is header2</h2>
+  <h2>This is header3</h2>
+  Input your name:  <input type="text">
+<div></div>
+<div id="content">
+<input tabIndex="1">
+<select tabIndex="3">
+    <option>select menu</option>
+	</select>
+	 <p tabIndex="3">
+	 A Paragraph
+	 </div>
+   </div>
+</body>
+<script>
+var a=0;
+$("document").ready(function(){
+	/*$("p").click(function(){
+		$("p").append("<p>This is a click Event</p>");
+	});
+	$("p").dblclick(function(){
+		$("p").append("<p>This is a double-click Event</p>");
+	});*/
+	$("p").bind("click", function(){  
+		$( "<p>This is a click Event</p>").appendTo( "body" );  
+	});  
+	$("p").bind("dblclick", function(){  
+		$( "<p>This is a double-click Event</p>"  ).appendTo( "body" );  
+	});  
+	$("#field1").blur(function(){
+		alert("This input field has lost focus");
+	});
+	$("input:text").change(function(){
+		$("form").append("<p>"+$("input:text").val()+"</p>");
+	});
+	/*$("h1").click(function(){
+		$("h1").hide();
+	});*/
+	$("p").dblclick(function(){
+		$("p").toggleClass("dbl");
+	});
+	$("h1").click(function(){
+		$("h1").clone().appendTo("body");
+	});
+	/*$(this).on("mousemove",function(event){
+		console.log(event.pageX);
+		console.log(event.pageY);
+	});*/
+	$("#field11").keypress(function(){
+		$(this).blur();
+	});
+	$("button").on("click",function(event){
+		//event.preventDefault();	
+		return "hello";
+	});
+	
+	$("button").on("click",function(event){
+		//event.preventDefault();	
+		console.log(event.result);
+	});
+	$("button").click(function(e){
+		if(a==0){
+		a=e.timeStamp;
+		}
+		else{
+		a = e.timeStamp-a;
+		console.log(a);
+		a=e.timeStamp;}
+	});
+	$("h1").click(function(e){
+		console.log(e.type);
+	});
+	$("input:text").keypress(function(e){
+		console.log(e.which);
+	});
+	$( "#content" ).delegate( "*", "focus blur", function() {  
+		var elem = $( this );  
+		setTimeout(function() {  
+			elem.toggleClass( "focused", elem.is( ":focus" ) );  
+		}, 0 );  
+	});
+
+ 
+});
+</script>
+</html>

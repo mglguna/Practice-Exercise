@@ -1,0 +1,59 @@
+<!Doctype html>
+<html>
+<body>
+<table>
+<tr id="text">
+    <td onclick="changecolor()">Text</td>
+</tr> 
+    </table>
+<form>
+    <input type="text" name="name" id="text1">
+     <input type="button" value="submit" onclick="printvalue()">
+ </form>
+<p id="demo"></p>
+
+ <table id="row">
+     <tr>
+         <th>firstName</th>
+         <th>LastName</th>
+     </tr>
+     <tr id="row">
+         
+     </tr>  
+         </table>  
+</body>
+
+<script>
+function changecolor() {
+    console.log("Yellow");
+    document.getElementById("text").style.background="yellow";
+}
+function printvalue(){
+    console.log(document.getElementById("text1").value);
+    var t=document.getElementById("text1").value;
+	
+    if (t.toLowerCase()=="guna")
+    {
+        document.getElementById("demo").innerHTML="This is my Name";
+    }   
+    else{
+               document.getElementById("demo").innerHTML="This is Not my Name";
+    }
+}
+a={"employee":[{"firstname":"abc","lastname":"def"},{"firstname":"wer","lastname":"rwe"},{"firstname":"fdsfsd","lastname":"sdfsdf"}]}
+
+
+for(i=0;i<a.employee.length;i++)
+{
+var x=document.getElementById("row");
+var y = document.createElement('tr');
+var tdele=document.createElement('td');
+tdele.innerHTML=a.employee[i].firstname;
+y.appendChild(tdele);
+var tdele1=document.createElement("td");
+tdele1.innerHTML=a.employee[i].lastname;
+y.appendChild(tdele1);
+x.appendChild(y);
+}
+</script>
+</html>

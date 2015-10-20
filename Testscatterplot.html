@@ -1,0 +1,77 @@
+<!Doctype html>
+<html>
+		<head>
+			<script src="http://d3js.org/d3.v3.js"></script>
+		</head>
+		<style>
+			.axis{
+				stroke-width:2px;
+			}
+			.circle{
+				fill:none;
+				stroke:red;
+				stroke-width:1px;
+			}
+		</style>
+		<body>
+			<script>
+				var w=500,h=500,padding=30;
+				var margin={top:30,bottom:30,left:30,right:30}
+				var dataset = [
+							  [ 5,     20 ],[ 480,   90 ],[ 250,   50 ],[ 100,   33 ],
+							  [ 330,   95 ],[ 410,   12 ],[ 475,   44 ],[ 25,    67 ],
+							  [ 85,    21 ],[ 220,   88 ]
+						  ];
+				var canvas=d3.select("body").append("svg")
+								.attr("height",h+margin.top+margin.bottom)
+								.attr("width",w+margin.left+margin.right)
+								.append("g")
+								.attr("transform","translate(50,50)");
+				var xScale=d3.scale.linear()
+								.domain([0,d3.max(dataset,function(d){return d[0];})])
+								.range([padding,w-padding]);
+				var yScale=d3.scale.linear()
+								.domain([0,d3.max(dataset,function(d){return d[1];})])
+								.range([h-padding,padding]);
+				var xAxis=d3.svg.axis()
+								.scale(xScale)
+								.orient("bottom")
+								.ticks(10);
+				var yAxis=d3.svg.axis()
+								.scale(yScale)
+								.orient("left")
+								.ticks(10);				
+						
+				canvas.selectAll("circle")
+						.data(dataset)
+						.enter()
+						.append("circle")
+						.attr("cx",function(d){return xScale(d[0]);})
+						.attr("cy",function(d){return yScale(d[1]);})
+						.attr("r",3)
+						.attr("class","circle")
+						.append("g")
+						.attr("transform","translate(200,200)");
+						
+				canvas.selectAll("text")
+						.data(dataset)
+						.enter()
+						.append("text")
+						.text(function(d){return d[0]+","+d[1];})
+						.attr("x",function(d){return xScale(d[0]);})
+						.attr("y",function(d){return yScale(d[1]);})
+						.attr("font-size","10px")
+						.attr("color","blue");
+						
+				canvas.append("g")
+						.call(xAxis)
+						.attr("transform","translate(0,"+(h-padding)+")")
+						.attr("class","axis");
+				canvas.append("g")
+						.call(yAxis)
+						.attr("transform","translate("+padding+",0)")
+						.attr("class","axis");		
+						
+			</script>
+		</body>
+</html>		
